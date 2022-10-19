@@ -1,7 +1,7 @@
 import bcrypt from "bcrypt";
 import { Response } from "express";
 import { supabase } from "../src/app";
-import { IsUser_exists } from "../utils/auth.utils";
+import { cookiesToToken, IsUser_exists } from "../utils/auth.utils";
 
 export const hashPassword = async (password: string) => {
   const salt = await bcrypt.genSalt(10);
@@ -24,14 +24,27 @@ export const singIn = async (req: any, res: Response) => {
     .select("*")
     .eq("email", email)
     .then(async ({ data, error }) => {
+      //! if any error
       if (error) return res.status(400).send({ message: error.message });
+
       if (data.length > 0) {
         const user = data[0];
         const validPassword = await comparePassword(password, user.password);
+        //! in valid password
         if (!validPassword)
           return res
             .status(200)
             .send({ message: "Invalid email or password", status: "failed" });
+        //! set cookie
+        const token = cookiesToToken(user.uid)
+        console.log("token --->", token);
+        res.cookie("token", token, {
+          httpOnly: true,
+          secure: true,
+          sameSite: "none",
+          expires: new Date(Date.now() + 24 * 60 * 60 * 1000),
+        });
+
         res.status(200).send({
           message: "User logged in successfully",
           data: user,
