@@ -1,5 +1,7 @@
 {
   "dependencies": {
-    "angular-material-icons": "^0.7.1"
+    "@types/jsonwebtoken": "^8.5.9",
+    "angular-material-icons": "^0.7.1",
+    "jsonwebtoken": "^8.5.1"
   }
 }
