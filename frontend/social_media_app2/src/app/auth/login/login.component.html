@@ -1,0 +1,26 @@
+<div class="w-[450px] flex flex-col gap-4">
+  <span class="text-4xl text-white my-4"> Login to your account </span>
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <app-custom-input
+      label="email"
+      type="text"
+      icon="assignment_ind"
+      [controller]="this.email"
+    ></app-custom-input>
+    <app-custom-input
+      label="password"
+      type="password"
+      icon="lock"
+      [controller]="this.password"
+    ></app-custom-input>
+
+    <div class="flex items-center w-full justify-center">
+      <button
+        type="submit"
+        class="bg-[#1D90F5] text-white font-bold py-2 px-4 rounded-lg"
+      >
+        Login
+      </button>
+    </div>
+  </form>
+</div>

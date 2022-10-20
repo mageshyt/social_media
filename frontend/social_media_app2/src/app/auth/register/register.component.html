@@ -1,0 +1,62 @@
+<div class="flex flex-col gap-4 p-4 w-[500px]">
+  <span class="text-gray-200"> Start your journey with us today! </span>
+
+  <span class="text-white text-4xl font-bold">
+    Create new account
+    <p class="text-sky-300 text-5xl inline-block font-bold">.</p>
+  </span>
+
+  <!-- redirect login -->
+  <div>
+    <span class="text-gray-200"> Already have an account? </span>
+    <a (click)="setLogin($event)" class="text-sky-300 font-bold cursor-pointer">
+      Login
+    </a>
+  </div>
+
+  <!-- form -->
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <div class="flex items-center gap-6">
+      <!-- first name -->
+      <app-custom-input
+        label="First Name"
+        type="text"
+        icon="assignment_ind"
+        [controller]="this.firstname"
+      ></app-custom-input>
+      <!-- last name -->
+      <app-custom-input
+        label="Last Name"
+        type="text"
+        icon="assignment_ind"
+        [controller]="this.lastname"
+      >
+      </app-custom-input>
+    </div>
+
+    <!-- Email -->
+    <app-custom-input
+      label="Email"
+      type="email"
+      icon="email"
+      [controller]="this.email"
+    ></app-custom-input>
+
+    <!-- Password -->
+    <app-custom-input
+      label="Password"
+      type="password"
+      icon="lock"
+      [controller]="this.password"
+    ></app-custom-input>
+    <!-- create account btn -->
+    <div class="flex items-center w-full justify-center">
+      <button
+        type="submit"
+        class="bg-[#1D90F5] text-white font-bold py-2 px-4 rounded-lg"
+      >
+        Create Account
+      </button>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,12 @@
+<div class="flex flex-col bg-[#323645] mb-4 rounded-lg px-2 py-1">
+  <label for="first_name" class="ml-2 text-gray-300"> {{ label }}</label>
+  <div class="flex items-center justify-center">
+    <input
+      type="{{ type }}"
+      name="first_name"
+      class="bg-transparent rounded-xl flex-1 outline-none text-white p-1"
+      [formControl]="controller"
+    />
+    <span class="material-icons text-white">{{ icon }} </span>
+  </div>
+</div>
