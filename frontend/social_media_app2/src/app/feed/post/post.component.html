@@ -1,0 +1,42 @@
+<div class="bg-secondaryColor rounded-lg p-4 mt-10">
+  <!-- user image and user info -->
+  <app-user-info
+    [userTag]="post?.AuthorDetail?.userTag"
+    [userProfile]="post?.AuthorDetail?.userProfile"
+    [username]="post?.AuthorDetail?.username"
+  ></app-user-info>
+
+  <!-- time stamp -->
+  <div class="flex justify-between items-center mt-4">
+    <h1 class="text-gray-400 text-sm">{{ timeStamp }}</h1>
+    <span class="material-icons text-gray-400">expand_more</span>
+  </div>
+
+  <!-- post  -->
+  <div class="mt-4">
+    <p class="text-white text-lg">{{ post?.postText }}</p>
+    <div *ngIf="post?.postAsset?.postImg">
+      <img
+        [src]="post?.postAsset?.postImg"
+        alt="post-img"
+        class="w-full object-cover rounded-lg mt-4"
+      />
+    </div>
+    <!-- for video -->
+    <div *ngIf="post?.postAsset?.postVideo">
+      <video
+        [src]="post?.postAsset?.postVideo"
+        class="w-full object-cover rounded-lg mt-4"
+        controls
+      ></video>
+    </div>
+    <!-- comments count -->
+    <div *ngIf="commentsCount" class="flex justify-between items-center mt-4">
+      <h1 class="text-gray-400 text-sm">{{ commentsCount }} comments</h1>
+      <h1 class="text-gray-400 text-sm">{{ retweetCount }} retweets</h1>
+    </div>
+
+    <!-- post actions -->
+    <app-post-reaction></app-post-reaction>
+  </div>
+</div>

@@ -1,9 +1,19 @@
-<div class="bg-mainColor h-screen w-full">
+<div class="bg-mainColor overflow-hidden h-screen w-full">
   <!-- app bar  -->
   <app-header></app-header>
-  <!-- left -->
-
-  <!-- middle feed component-->
-
-  <!-- right  -->
+  <section class="flex">
+    <!-- left -->
+    <div class="w-[20%] hidden p-6 xl:flex flex-col space-y-4">
+      <app-user-card></app-user-card>
+      <app-followers-suggestion></app-followers-suggestion>
+    </div>
+    <!-- middle feed component-->
+    <div class="mx-4 w-[1000px] flex-1 scrollbar-hide">
+      <app-feed></app-feed>
+    </div>
+    <!-- right  -->
+    <div class="w-[25%] mx-4 hidden p-6 xl:flex">
+      <app-trending></app-trending>
+    </div>
+  </section>
 </div>

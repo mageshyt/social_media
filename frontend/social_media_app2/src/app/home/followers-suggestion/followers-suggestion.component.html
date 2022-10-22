@@ -1,0 +1,19 @@
+<div class="h-[320px] w-[300px] bg-secondaryColor rounded-md p-2 mt-3">
+  <!-- heading -->
+  <span class="font-bold text-white text-[16px]">Who is to follow you</span>
+
+  <!-- peoples -->
+  <div class="my-5">
+    <app-suggesition-user
+      *ngFor="let user of dummyUsers"
+      [userImg]="user.userImg"
+      [userName]="user.userName"
+      [userTag]="user.userTag"
+    ></app-suggesition-user>
+  </div>
+
+  <!-- show more btn -->
+  <div class="space-x-4 p-2">
+    <button class="text-sky-500 font-medium cursor-pointer">show more</button>
+  </div>
+</div>

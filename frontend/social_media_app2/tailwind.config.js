@@ -12,8 +12,9 @@ module.exports = {
         "slide-in": "slide-in 0.5s ease-out",
         "slide-fwd":
           " slide-fwd 0.45s cubic-bezier(0.250, 0.460, 0.450, 0.940) both",
+        "hover-bounce": "scale-110 duration-150 transition-all transform",
       },
     },
   },
-  plugins: [],
+  plugins: [require("tailwind-scrollbar-hide")],
 };

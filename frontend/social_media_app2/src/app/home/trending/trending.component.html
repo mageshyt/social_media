@@ -1,0 +1,30 @@
+<div class="w-[300px] bg-secondaryColor p-4 rounded-lg">
+  <!-- trending for you -->
+  <h1 class="text-white font-bold text-lg">Trending for you</h1>
+
+  <div *ngFor="let tred of dummyTrending">
+    <!-- title -->
+    <h1 class="text-gray-500 font-semibold text-md mt-4">{{ tred.title }}</h1>
+    <!-- trending list -->
+    <div
+      class="flex items-center justify-between"
+      *ngFor="let hashtags of tred.hashtags"
+    >
+      <div class="flex flex-col mt-4">
+        <!-- hashtag -->
+        <h1 class="text-gray-200 font-medium text-[18px]">
+          {{ hashtags.hashTag }}
+        </h1>
+        <!-- tweet count -->
+        <h1 class="text-gray-400 text-xs">{{ hashtags.tweetCount }} Tweets</h1>
+      </div>
+      <span class="material-icons text-white"> more_horiz </span>
+    </div>
+    <!-- divider -->
+    <div class="border-b border-gray-500 my-2"></div>
+  </div>
+  <!-- show more -->
+  <div class="space-x-4 p-2">
+    <button class="text-sky-500 font-medium cursor-pointer">show more</button>
+  </div>
+</div>

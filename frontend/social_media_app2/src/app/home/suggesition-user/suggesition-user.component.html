@@ -1,0 +1,21 @@
+<div class="flex items-center p-1 my-4 space-x-2">
+  <!-- user image -->
+  <div class="">
+    <img
+      [src]="userImg"
+      alt=""
+      class="h-12 w-12 rounded-full border-2 border-white mx-auto"
+    />
+  </div>
+  <!-- user info -->
+  <div class="flex flex-col flex-1">
+    <span class="text-white font-bold text-sm">{{ userName }}</span>
+    <span class="text-gray-400 text-sm">@{{ userTag }}</span>
+  </div>
+  <!-- follow button -->
+  <div>
+    <button class="bg-white text-black font-bold text-sm rounded-xl p-2">
+      Follow
+    </button>
+  </div>
+</div>

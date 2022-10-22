@@ -1,0 +1,20 @@
+  <!-- user image and user info -->
+  <div class="flex items-start">
+    <!-- elon musk -->
+    <img
+      [src]="userProfile"
+      alt="user-img"
+      class="w-[55px] h-[55px] rounded-full object-cover"
+    />
+    <!-- user info -->
+    <div class="ml-4 flex justify-center items-center">
+      <!-- user name -->
+      <h1 class="text-white font-bold text-lg">{{username}}</h1>
+      <!-- verified -->
+      <span class="material-icons text-blue-400 ml-2 mr-3 text-lg">
+        verified
+      </span>
+      <!-- user handle -->
+      <h1 class="text-gray-400 text-sm">{{userTag}}</h1>
+    </div>
+  </div>
