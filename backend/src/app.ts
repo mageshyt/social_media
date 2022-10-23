@@ -3,25 +3,32 @@ import createError from "http-errors";
 import morgan from "morgan";
 import cors from "cors";
 require("dotenv").config();
-import {
-  AuthChangeEvent,
-  AuthSession,
-  createClient,
-  Session,
-  SupabaseClient,
-  User,
-} from "@supabase/supabase-js";
+import { createClient, SupabaseClient } from "@supabase/supabase-js";
 import AuthRouter from "../routes/auth.router";
+import { postRouter } from "../routes/post.router";
+import fileUpload from "express-fileupload";
 
 const app = express();
+
 app.use(express.json());
+
 app.use(express.urlencoded({ extended: false }));
+
 app.use(morgan("dev"));
+
 app.use(
   cors({
-    // origin: 'http://localhost:4200',
-    origin: "*",
+    origin: "http://localhost:4200",
+    // origin: "*",
     credentials: true,
+  })
+);
+app.use(
+  fileUpload({
+    limits: {
+      fileSize: 10000000, // Around 10MB
+    },
+    abortOnLimit: true,
   })
 );
 
@@ -36,37 +43,13 @@ const connect_to_supabase = async () => {
     process.env.SUPABASE_KEY as string
   );
 
+
   return supabase;
 };
 
 app.use("/api", AuthRouter);
 
-app.get("/getdata", (req, res) => {
-  if (!supabase) return;
-  supabase
-    .from("test_table")
-    .select("*")
-    .then(({ data, error }) => {
-      console.log("data", data);
-      res.status(200).send(data);
-    });
-});
-
-app.post("/setData", (req, res) => {
-  if (!supabase) return;
-  supabase
-    .from("test_table")
-    .insert([
-      {
-        title: req.body.title,
-      },
-    ])
-    .then(({ data, error }) => {
-      console.log("data", data);
-
-      res.status(200).send(data);
-    });
-});
+app.use("/post", postRouter);
 
 const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => {
