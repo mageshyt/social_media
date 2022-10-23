@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable } from "@angular/core";
 import {
   AuthChangeEvent,
   AuthSession,
@@ -6,10 +6,10 @@ import {
   Session,
   SupabaseClient,
   User,
-} from '@supabase/supabase-js';
-import { environment } from 'src/environments/environment';
+} from "@supabase/supabase-js";
+import { environment } from "src/environments/environment";
 @Injectable({
-  providedIn: 'root',
+  providedIn: "root",
 })
 export class SuperbaseService {
   private supabase?: SupabaseClient;
@@ -18,7 +18,16 @@ export class SuperbaseService {
       environment.supabaseUrl,
       environment.supabaseKey
     );
+    console.log("admin", this.supabase.auth.admin);
+  }
 
-    console.log('this.supabase', this.supabase);
+  public async uploadImage(file: any) {
+    console.log("file", file);
+    await this.supabase?.storage
+      .from("images")
+      .upload(`image-${file.name}`, file)
+      .then((res) => {
+        console.log("res", res);
+      });
   }
 }

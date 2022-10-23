@@ -1,61 +1,93 @@
-<div
-  class="bg-secondaryColor overflow-hidden p-2 select-none rounded-lg h-[140px]"
->
-  <!-- user image -->
-  <div class="flex items-center">
-    <img
-      [src]="userProfile"
-      alt="user-img"
-      class="w-16 h-16 rounded-full object-cover"
-    />
-    <!-- input for what happening -->
-    <input
-      type="text"
-      class="bg-[#28353E] p-3 w-full mx-4 rounded-lg outline-none h-full text-white text-lg ml-2"
-      placeholder="What's happening?"
-    />
-  </div>
+<div class="bg-secondaryColor overflow-hidden p-2 select-none rounded-lg">
+  <form [formGroup]="postForm" (ngSubmit)="onPost()">
+    <!-- user image -->
+    <div class="flex items-center">
+      <img
+        [src]="userProfile"
+        alt="user-img"
+        class="w-16 h-16 rounded-full object-cover"
+      />
+      <!-- input for what happening -->
+      <input
+        type="text"
+        [formControl]="title"
+        class="bg-[#28353E] p-3 w-full mx-4 rounded-lg outline-none h-full text-white text-lg ml-2"
+        placeholder="What's happening?"
+      />
 
-  <!-- media -->
-  <div class="mt-4 flex justify-center gap-x-5">
-    <!-- photos -->
-    <div
-      class="cursor-pointer hover:scale-110 duration-150 transition-all transform flex gap-3 p-2 w-[100px] border rounded-xl"
-    >
-      <!-- icon -->
-      <span class="material-icons text-green-300"> photo </span>
-      <!-- text -->
-      <span class="text-white">Photo</span>
+      <!-- selected image -->
+      <ng-template #previewImage>
+        <div class="w-full flex py-2 items-center justify-center">
+          <img
+            [src]="setRenderImage"
+            alt="selected-img"
+            class="object-contain rounded-md"
+          />
+        </div>
+      </ng-template>
     </div>
 
+    <!-- media -->
     <div
-      class="cursor-pointer hover:scale-110 duration-150 transition-all transform flex gap-3 p-2 w-[100px] border rounded-xl"
+      *ngIf="!isUploaded; else previewImage"
+      class="mt-4 flex justify-center gap-x-5"
     >
-      <!-- icon -->
-      <span class="material-icons text-blue-300"> movie</span>
-      <!-- text -->
-      <span class="text-white">Video</span>
+      <!-- photos -->
+      <div
+        class="cursor-pointer relative hover:scale-110 duration-150 transition-all transform flex gap-3 p-2 w-[100px] border rounded-xl"
+      >
+        <!-- icon -->
+        <span class="material-icons text-green-300"> photo </span>
+        <!-- image input -->
+        <input
+          type="file"
+          class="opacity-0 w-full absolute text-center cursor-pointer bg-red-400"
+          (change)="onDrop($event)"
+          nv-file-select
+        />
+        <!-- text -->
+        <span class="text-white">Photo</span>
+      </div>
+
+      <div
+        class="cursor-pointer hover:scale-110 duration-150 transition-all transform flex gap-3 p-2 w-[100px] border rounded-xl"
+      >
+        <!-- icon -->
+        <span class="material-icons text-blue-300"> movie</span>
+        <!-- text -->
+        <span class="text-white">Video</span>
+      </div>
+
+      <!-- she dual -->
+      <div
+        class="cursor-pointer hover:scale-110 duration-150 transition-all transform flex gap-3 p-2 w-[120px] border rounded-xl"
+      >
+        <!-- icon -->
+        <span class="material-icons text-yellow-300"> calendar_month</span>
+        <!-- text -->
+        <span class="text-white">schedule</span>
+      </div>
+
+      <!-- feelings -->
+
+      <div
+        class="cursor-pointer hover:scale-110 duration-150 transition-all transform flex gap-3 p-2 w-[120px] border rounded-xl"
+      >
+        <!-- icon -->
+        <span class="material-icons text-red-300"> mood</span>
+        <!-- text -->
+        <span class="text-white">feeling</span>
+      </div>
     </div>
 
-    <!-- she dual -->
-    <div
-      class="cursor-pointer hover:scale-110 duration-150 transition-all transform flex gap-3 p-2 w-[120px] border rounded-xl"
-    >
-      <!-- icon -->
-      <span class="material-icons text-yellow-300"> calendar_month</span>
-      <!-- text -->
-      <span class="text-white">schedule</span>
+    <!-- post button -->
+    <div *ngIf="title.getRawValue()" class="flex justify-end mt-4">
+      <button
+        type="submit"
+        class="bg-[#1DA1F2] text-white px-4 py-2 rounded-lg"
+      >
+        Post
+      </button>
     </div>
-
-    <!-- feelings -->
-
-    <div
-      class="cursor-pointer hover:scale-110 duration-150 transition-all transform flex gap-3 p-2 w-[120px] border rounded-xl"
-    >
-      <!-- icon -->
-      <span class="material-icons text-red-300"> mood</span>
-      <!-- text -->
-      <span class="text-white">feeling</span>
-    </div>
-  </div>
+  </form>
 </div>

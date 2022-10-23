@@ -1,16 +1,26 @@
-import { Component, OnInit } from '@angular/core';
-
+import { Component, OnInit } from "@angular/core";
+import { AuthService } from "src/app/services/auth.service";
+export type AuthUser = {
+  id: string;
+  userProfile:string
+  firstname:string
+  lastname:string
+  userBio:string
+  
+};
 @Component({
-  selector: 'app-user-card',
-  templateUrl: './user-card.component.html',
-  styleUrls: ['./user-card.component.scss'],
+  selector: "app-user-card",
+  templateUrl: "./user-card.component.html",
+  styleUrls: ["./user-card.component.scss"],
 })
 export class UserCardComponent implements OnInit {
-  username: string = 'magesh yt';
-  userTag: string = '@mageshyt';
-  userProfile: string = 'https://avatars.githubusercontent.com/u/70838644?v=4';
-  userBio: string = '✨I am a full stack developer ✨';
-  constructor() {}
+  currentUser?: AuthUser;
+  constructor(private auth: AuthService) {
+    this.auth.me().subscribe((res: any) => {
+      this.currentUser = res.data;
+      
+    });
+  }
 
   ngOnInit(): void {}
 }

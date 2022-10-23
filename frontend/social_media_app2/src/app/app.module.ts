@@ -15,17 +15,12 @@ import { CustomInputComponent } from "./component/custom-input/custom-input.comp
 import { HomeComponent } from "./home/home.component";
 import { AppRoutingModule } from "./app-routing.module";
 import { AuthRoutingModule } from "./auth/auth-routing.module";
-import { HeaderComponent } from "./home/header/header.component";
-import { SearchbarComponent } from "./home/searchbar/searchbar.component";
-import { UserCardComponent } from "./home/user-card/user-card.component";
-import { FollowersSuggestionComponent } from "./home/followers-suggestion/followers-suggestion.component";
-import { SuggesitionUserComponent } from "./home/suggesition-user/suggesition-user.component";
 import { FeedComponent } from "./feed/feed.component";
 import { PostModalComponent } from "./feed/post-modal/post-modal.component";
-import { PostComponent } from './feed/post/post.component';
-import { UserInfoComponent } from './feed/post/user-info/user-info.component';
-import { PostReactionComponent } from './feed/post/post-reaction/post-reaction.component';
-import { TrendingComponent } from "./home/trending/trending.component";
+import { PostComponent } from "./feed/post/post.component";
+import { UserInfoComponent } from "./feed/post/user-info/user-info.component";
+import { PostReactionComponent } from "./feed/post/post-reaction/post-reaction.component";
+import { HomeModule } from "./home/home.module";
 
 @NgModule({
   declarations: [
@@ -35,17 +30,11 @@ import { TrendingComponent } from "./home/trending/trending.component";
     RegisterComponent,
     CustomInputComponent,
     HomeComponent,
-    HeaderComponent,
-    SearchbarComponent,
-    UserCardComponent,
-    FollowersSuggestionComponent,
-    SuggesitionUserComponent,
     FeedComponent,
     PostModalComponent,
     PostComponent,
     UserInfoComponent,
     PostReactionComponent,
-    TrendingComponent
   ],
   imports: [
     BrowserModule,
@@ -56,6 +45,7 @@ import { TrendingComponent } from "./home/trending/trending.component";
     AuthRoutingModule,
     ToastrModule.forRoot(),
     BrowserAnimationsModule,
+    HomeModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

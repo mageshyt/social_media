@@ -1,6 +1,6 @@
 <div class="h-[350px] w-[300px] bg-secondaryColor rounded-md">
   <!-- bg image -->
-  <div>
+  <div *ngIf="currentUser">
     <img
       src="https://images.pexels.com/photos/1089455/pexels-photo-1089455.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
       alt="banner-img"
@@ -8,20 +8,23 @@
     />
     <!-- my profile image -->
     <img
-      [src]="userProfile"
+      [src]="currentUser.userProfile"
       alt="profile"
       class="h-16 w-16 rounded-full border-2 border-white -mt-10 mx-auto"
     />
   </div>
   <!-- user info -->
-  <div class="flex flex-col justify-center items-center space-y-2">
+  <div
+    class="flex flex-col justify-center items-center p-2"
+    *ngIf="currentUser"
+  >
     <h1 class="text-white font-bold text-xl mt-2">
-      {{ username }}
+      {{ currentUser.firstname }} {{ currentUser.lastname }}
     </h1>
-    <span class="text-sm text-gray-400 text-center">
-      {{ userTag }}
-    </span>
-    <p class="text-white text-sm">{{ userBio }}</p>
+    <span class="text-sm text-gray-400 text-center"> </span>
+    <p class="text-white text-sm">
+      @{{ currentUser.firstname.toLocaleLowerCase() }}
+    </p>
   </div>
   <!-- followers -->
   <div class="border-y-[0.2px] flex items-center border-gray-400 p-4">
