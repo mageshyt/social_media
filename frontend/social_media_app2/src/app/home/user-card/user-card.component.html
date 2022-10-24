@@ -21,9 +21,11 @@
     <h1 class="text-white font-bold text-xl mt-2">
       {{ currentUser.firstname }} {{ currentUser.lastname }}
     </h1>
-    <span class="text-sm text-gray-400 text-center"> </span>
+    <span class="text-sm text-gray-400 text-center"
+      >@{{ currentUser.firstname.toLocaleLowerCase() }}
+    </span>
     <p class="text-white text-sm">
-      @{{ currentUser.firstname.toLocaleLowerCase() }}
+      {{ currentUser.userBio }}
     </p>
   </div>
   <!-- followers -->

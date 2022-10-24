@@ -1,9 +1,10 @@
 <div class="bg-secondaryColor rounded-lg p-4 mt-10">
   <!-- user image and user info -->
   <app-user-info
-    [userTag]="post?.AuthorDetail?.userTag"
-    [userProfile]="post?.AuthorDetail?.userProfile"
-    [username]="post?.AuthorDetail?.username"
+    *ngIf="postAuthor"
+    [userTag]="post?.AuthorDetail?.userTag || postAuthor.firstname"
+    [userProfile]="post?.AuthorDetail?.userProfile || postAuthor.userProfile"
+    [username]="post?.AuthorDetail?.username || postAuthor.firstname"
   ></app-user-info>
 
   <!-- time stamp -->
@@ -15,11 +16,12 @@
   <!-- post  -->
   <div class="mt-4">
     <p class="text-white text-lg">{{ post?.postText }}</p>
-    <div *ngIf="post?.postAsset?.postImg">
+    <div *ngIf="post?.postAsset?.postImage">
       <img
-        [src]="post?.postAsset?.postImg"
+        [src]="post?.postAsset?.postImage"
         alt="post-img"
         class="w-full object-cover rounded-lg mt-4"
+        crossorigin
       />
     </div>
     <!-- for video -->

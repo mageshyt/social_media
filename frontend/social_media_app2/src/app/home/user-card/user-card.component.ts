@@ -2,11 +2,10 @@ import { Component, OnInit } from "@angular/core";
 import { AuthService } from "src/app/services/auth.service";
 export type AuthUser = {
   id: string;
-  userProfile:string
-  firstname:string
-  lastname:string
-  userBio:string
-  
+  userProfile: string;
+  firstname: string;
+  lastname: string;
+  userBio: string;
 };
 @Component({
   selector: "app-user-card",
@@ -15,12 +14,15 @@ export type AuthUser = {
 })
 export class UserCardComponent implements OnInit {
   currentUser?: AuthUser;
-  constructor(private auth: AuthService) {
-    this.auth.me().subscribe((res: any) => {
-      this.currentUser = res.data;
-      
-    });
-  }
+  constructor(private auth: AuthService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if (!this.currentUser) {
+      // this.auth.me().subscribe((res: any) => {
+      //   this.currentUser = res.data;
+      // });
+      // get user from local storage
+      this.currentUser = JSON.parse(localStorage.getItem("user") || "{}");
+    }
+  }
 }

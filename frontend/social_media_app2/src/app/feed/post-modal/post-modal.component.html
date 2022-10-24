@@ -83,8 +83,9 @@
     <!-- post button -->
     <div *ngIf="title.getRawValue()" class="flex justify-end mt-4">
       <button
+        [disabled]="isPosting"
         type="submit"
-        class="bg-[#1DA1F2] text-white px-4 py-2 rounded-lg"
+        class="bg-[#1DA1F2] disabled:cursor-not-allowed text-white px-4 py-2 rounded-lg"
       >
         Post
       </button>

@@ -1,21 +1,23 @@
 import { Component, OnInit } from "@angular/core";
-type userType = {
+import { PostService } from "../services/post.service";
+export type userType = {
   username: string;
   userTag: string;
   userProfile: string;
 };
 type postAsset = {
-  postImg: string;
+  postImage: string;
   postVideo: string;
 };
 export type postType = {
-  AuthorDetail: userType;
+  AuthorDetail: any;
   postText: string;
   postAsset: postAsset;
   commentsCount: number;
   likesCount: number;
   retweetCount: number;
-  createdAt: string;
+  created_at: string;
+  postAuthor?: any;
 };
 @Component({
   selector: "app-feed",
@@ -48,64 +50,17 @@ export class FeedComponent implements OnInit {
         "https://pbs.twimg.com/profile_images/1337607516008501250/6Ggc4S5n_400x400.png",
     },
   ];
-  dummyPosts: postType[] = [
-    {
-      AuthorDetail: this.dummyUser[1],
-      postText:
-        "Let's set an age limit after which you can't run for political office, perhaps a number just below 70 ...",
-      postAsset: {
-        postImg: "",
-        postVideo: "",
-      },
-      commentsCount: 32320,
-      likesCount: 0,
-      retweetCount: 1650,
-      createdAt: "Sat Oct 22 2022 19:51:42 GMT+0530 (India Standard Time)",
-    },
-    {
-      AuthorDetail: this.dummyUser[2],
-      postText:
-        "We filmed a video with some brand new YouTubers, go show them some support 🙌🏻",
-      postAsset: {
-        postImg:
-          "https://pbs.twimg.com/media/FfNqlE1WQAMsZ79?format=jpg&name=large",
-        postVideo: "",
-      },
-      commentsCount: 14500,
-      likesCount: 0,
-      retweetCount: 2450,
-      createdAt: "Sat Oct 22 2022 12:51:42 GMT+0530 (India Standard Time)",
-    },
-    {
-      AuthorDetail: this.dummyUser[0],
-      postText:
-        "Right now i am working on new project, it is a social media app, i will be releasing it soon, stay tuned",
-      postAsset: {
-        postImg:
-          "https://cdn.sanity.io/images/7azvzymu/production/a26a0f9d3afc7c1b64d2a1fb03520d4c5c822d0a-1919x947.png",
-        postVideo: "",
-      },
-      commentsCount: 14500,
-      likesCount: 0,
-      retweetCount: 2450,
-      createdAt: "Sat Oct 21 2022 15:51:42 GMT+0530 (India Standard Time)",
-    },
-    {
-      AuthorDetail: this.dummyUser[3],
-      postText:
-        "Our most advanced paint system yet, allowing up to 13 layers for depth, dimension & a hand-painted look",
-      postAsset: {
-        postImg: "",
-        postVideo: "/assets/videos/tesla.mp4",
-      },
-      commentsCount: 1245,
-      likesCount: 91480,
-      retweetCount: 765,
-      createdAt: "Sat Oct 21 2022 15:51:42 GMT+0530 (India Standard Time)",
-    },
-  ];
+  dummyPosts: postType[] = [];
 
-  constructor() {}
+  constructor(private post: PostService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.post.getAllPost().subscribe((res: any) => {
+      res.data.forEach((post: any) => {
+        if (post.id !== 5) {
+          this.dummyPosts.push(post);
+        }
+      });
+    });
+  }
 }

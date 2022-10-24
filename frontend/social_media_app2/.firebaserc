@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "social-media-b87e1": {
+      "hosting": {
+        "social_media_app2": [
+          "social-media-b87e1"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "social-media-b87e1"
+  }
+}

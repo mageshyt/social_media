@@ -42,8 +42,9 @@ export class LoginComponent implements OnInit {
             closeButton: true,
           });
           localStorage.setItem("token", res.data.token);
+          localStorage.setItem("user", JSON.stringify(res.data));
           //  call this me
-          
+
           setTimeout(() => {
             this.router.navigate(["/"]);
           }, 1500);
