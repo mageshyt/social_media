@@ -63,6 +63,7 @@ export const singIn = async (req: any, res: Response) => {
     ?.from("users")
     .select("*")
     .eq("email", email)
+   
     .then(async ({ data, error }) => {
       //! if any error
       if (error) return res.status(400).send({ message: error.message });
@@ -112,6 +113,38 @@ export const GetUserDetail = async (req: any, res: Response) => {
       ?.from("users")
       .select("*")
       .eq("uid", decoded.userId as string)
+      .then(({ data, error }) => {
+        if (error) {
+          res.status(400).send({
+            message: "Something went wrong",
+          });
+        }
+        if (data) {
+          res.status(200).send({
+            message: "User detail",
+            data: data[0],
+          });
+        } else {
+          res.status(200).send({
+            message: "User not found",
+          });
+        }
+      });
+  } catch (err) {
+    console.log(err);
+    res.status(500).send({ message: "Something went wrong" });
+  }
+};
+
+//! get user detail
+export const getDetail = async (req: any, res: Response) => {
+  try {
+    const { uid } = req.params;
+    console.log("uid", uid);
+    await supabase
+      ?.from("users")
+      .select("*")
+      .eq("uid", uid)
       .then(({ data, error }) => {
         if (error) {
           res.status(400).send({
