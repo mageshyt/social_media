@@ -5,14 +5,15 @@ export const isLoggined = (req: Request, res: Response, next: NextFunction) => {
   try {
     // using jwt
     let token = req.headers.authorization || req.headers.cookie;
-
+    console.log(token);
     if (!token || (token.startsWith("Bearer ") && token.length < 20)) {
       return res.status(200).json({ error: "User not logged in" });
     }
-    if (token.startsWith("Bearer ")) {
-      token = token.split(" ")[1];
-    } else if (token.startsWith("token=")) {
+    if (token.startsWith("token=")) {
       token = token.split("token=")[1];
+    }
+    if (token.startsWith("Bearer ")) {
+      token = token.split("Bearer ")[1];
     }
     const user = verifyToken(token);
     if (!user) {

@@ -57,13 +57,14 @@ export const signUp = async (req: any, res: Response) => {
 
 export const singIn = async (req: any, res: Response) => {
   const { email, password } = req.body;
+
   if (!email || !password)
     return res.status(400).send({ message: "Email or password is missing" });
   await supabase
     ?.from("users")
     .select("*")
     .eq("email", email)
-   
+
     .then(async ({ data, error }) => {
       //! if any error
       if (error) return res.status(400).send({ message: error.message });
@@ -78,12 +79,11 @@ export const singIn = async (req: any, res: Response) => {
             .send({ message: "Invalid email or password", status: "failed" });
         //! set cookie
         const token = cookiesToToken(user.uid);
-        console.log("Cookie: " + token);
-        const check = res.cookie("token", token, {
+
+        res.cookie("token", token, {
           expires: new Date(Date.now() + 86400000),
           httpOnly: true,
         });
-        console.log("check", check);
 
         user.token = token;
         res.status(200).send({
