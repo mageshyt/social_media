@@ -10,7 +10,7 @@ import { postType } from "../feed.component";
 })
 export class PostComponent implements OnInit {
   @Input() post?: postType;
-
+  currentUser: any = JSON.parse(localStorage.getItem("user") || "{}");
   timeStamp: string = "";
   likesCount?: any;
   commentsCount?: any;
@@ -24,7 +24,9 @@ export class PostComponent implements OnInit {
       return num; // if value < 1000, nothing to do
     }
   };
-  postAuthor?: any;
+
+ 
+
   constructor(private post_service: PostService) {}
 
   ngOnInit(): void {
@@ -33,16 +35,15 @@ export class PostComponent implements OnInit {
       this.likesCount = this.numberFormatter(this.post?.likesCount);
       this.commentsCount = this.numberFormatter(this.post?.commentsCount);
       this.retweetCount = this.numberFormatter(this.post?.retweetCount);
-      if (typeof this.post.AuthorDetail === "string") {
-        this.post_service
-          .getAuthorPost(this.post.AuthorDetail as string)
-          .subscribe((data:any) => {
-            console.log(data);
-            this.postAuthor = data.data;
-          });
-
-          
-      }
     }
+
+    console.log(this.post?.comments);
   }
+
+  isComment: boolean = false;
+  showComment = () => {
+    this.isComment = !this.isComment;
+    
+  }
+  
 }

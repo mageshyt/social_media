@@ -1,6 +1,6 @@
 <div class="h-screen scrollbar-hide overflow-y-scroll pb-[150px]">
   <app-post-modal> </app-post-modal>
   <div class="">
-    <app-post *ngFor="let post of dummyPosts" [post]="post"> </app-post>
+    <app-post *ngFor="let post of this.post.posts" [post]="post"> </app-post>
   </div>
 </div>

@@ -10,6 +10,7 @@ type postAsset = {
   postVideo: string;
 };
 export type postType = {
+  id: string;
   AuthorDetail: any;
   postText: string;
   postAsset: postAsset;
@@ -18,6 +19,7 @@ export type postType = {
   retweetCount: number;
   created_at: string;
   postAuthor?: any;
+  comments?: any[];
 };
 @Component({
   selector: "app-feed",
@@ -52,15 +54,14 @@ export class FeedComponent implements OnInit {
   ];
   dummyPosts: postType[] = [];
 
-  constructor(private post: PostService) {}
+  constructor(public post: PostService) {}
 
   ngOnInit(): void {
-    this.post.getAllPost().subscribe((res: any) => {
-      res.data.forEach((post: any) => {
-        if (post.id !== 5) {
-          this.dummyPosts.push(post);
-        }
-      });
-    });
+    // this.post.getAllPost().subscribe((res: any) => {
+    //   this.dummyPosts.push(...res.data);
+    // });
+    this.post.getAllPost().then((res: any) => {});
+
+    this.dummyPosts.push(...this.post.posts);
   }
 }

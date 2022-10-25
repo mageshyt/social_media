@@ -1,0 +1,23 @@
+<div class="relative">
+  <!-- user -->
+  <div class="flex space-x-3 items-center">
+    <img
+      [src]="postComments?.user.userProfile"
+      alt="user-img"
+      class="w-10 h-10 rounded-full"
+    />
+    <h1 class="text-white text-sm">
+      {{ postComments?.user.firstname + " " + postComments?.user.lastname }}
+    </h1>
+  </div>
+  <!-- hr line -->
+  <div class="h-12 left-4 absolute border-l"></div>
+  <!-- comment -->
+  <div class="flex ml-8 mt-2 items-center justify-between">
+    <p class="text-white text-lg">{{ postComments?.comment }}</p>
+    <!--  created at -->
+    <div class="flex justify-between items-center mt-4">
+      <h1 class="text-gray-400 text-sm">{{ created_at }}</h1>
+    </div>
+  </div>
+</div>

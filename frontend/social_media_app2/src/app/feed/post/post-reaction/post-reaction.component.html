@@ -1,32 +1,35 @@
 <div class="flex gap-10 justify-center items-center">
   <!-- like -->
-  <div
-    class="flex gap-3 items-center cursor-pointer bg-[#28353E] py-2 justify-center px-5 rounded-md mt-4"
+  <button
+    class="flex gap-3 disabled:cursor-not-allowed items-center cursor-pointer bg-[#28353E] py-2 justify-center px-5 rounded-md mt-4"
+    (click)="likePost()"
+    [disabled]="likeLoading"
   >
     <span class="material-icons text-white">favorite</span>
     <h1 class="text-gray-50 text-sm">Like</h1>
-  </div>
+  </button>
 
   <!--  Retweet -->
-  <div
+  <button
     class="flex gap-3 items-center cursor-pointer bg-[#28353E] py-2 justify-center px-5 rounded-md mt-4"
   >
     <span class="material-icons text-white">repeat</span>
     <h1 class="text-gray-50 text-sm">Retweet</h1>
-  </div>
+  </button>
 
   <!--  Comment -->
-  <div
+  <button
+    (click)="showCommentBox()"
     class="flex gap-3 items-center cursor-pointer bg-[#28353E] py-2 justify-center px-5 rounded-md mt-4"
   >
     <span class="material-icons text-white">chat_bubble</span>
     <h1 class="text-gray-50 text-sm">Comment</h1>
-  </div>
+  </button>
 
   <!-- share -->
-  <div
+  <button
     class="flex gap-3 items-center cursor-pointer border-[1px] hover:bg-[#28353E] border-[#28353E] py-2 justify-center px-5 rounded-md mt-4"
   >
     <span class="material-icons text-white">ios_share</span>
-  </div>
+  </button>
 </div>

@@ -25,6 +25,8 @@ import { HomeModule } from "./home/home.module";
 import { initializeApp, provideFirebaseApp } from "@angular/fire/app";
 import { environment } from "../environments/environment";
 import { provideFirestore, getFirestore } from "@angular/fire/firestore";
+import { PostCommentsComponent } from "./feed/post/post-comments/post-comments.component";
+import { CommentBoxComponent } from "./feed/post/comment-box/comment-box.component";
 
 @NgModule({
   declarations: [
@@ -39,6 +41,9 @@ import { provideFirestore, getFirestore } from "@angular/fire/firestore";
     PostComponent,
     UserInfoComponent,
     PostReactionComponent,
+    PostCommentsComponent,
+    PostCommentsComponent,
+    CommentBoxComponent,
   ],
   imports: [
     BrowserModule,

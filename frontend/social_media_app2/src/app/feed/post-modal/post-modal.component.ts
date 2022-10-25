@@ -54,7 +54,6 @@ export class PostModalComponent implements OnInit {
     console.log("posting");
     this.isPosting = true;
     let imageUrl;
-    const authorId = this.currentUser.uid;
 
     console.log("authorId", this.file);
     if (this.file) {
@@ -65,31 +64,36 @@ export class PostModalComponent implements OnInit {
 
       task.then((res) => {
         fileRef.getDownloadURL().subscribe((url) => {
+          //! if post has image means
           let postDoc = {
             postText: this.title.value,
-            AuthorDetail: authorId,
+            AuthorDetail: this.currentUser,
             image: url,
           };
           this.post.createPOst(postDoc).subscribe((res: any) => {
             this.isPosting = false;
             this.title.setValue("");
-            this.setRenderImage = "";
+            this.setRenderImage = null;
+            this.isUploaded = false;
+            // ! call get all post
+            this.post.getAllPost();
           });
         });
       });
-
       return;
     }
 
+    //! only text then post it
     let postDoc = {
       postText: this.title.value,
-      AuthorDetail: authorId,
-      postImage: imageUrl,
+      AuthorDetail: this.currentUser,
     };
     this.post.createPOst(postDoc).subscribe((res: any) => {
       this.isPosting = false;
       //! clear the form
       this.title.setValue("");
+      this.isUploaded = false;
+      this.post.getAllPost();
     });
   }
 }

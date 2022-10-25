@@ -1,0 +1,23 @@
+<div class="flex items-center">
+  <img
+    [src]="currentUser?.userProfile"
+    alt="user-img"
+    class="w-10 h-10 rounded-full"
+  />
+  <form
+    [formGroup]="commentForm"
+    (ngSubmit)="addComment()"
+    class="w-full flex justify-between items-center"
+  >
+    <input
+      type="text"
+      [formControl]="comment"
+      class="bg-secondaryColor h-full flex-1 outline-none text-white ml-4 w-full"
+      placeholder="Add a comment..."
+    />
+    <!-- comment btn -->
+    <button type="submit" class="text-sky-300 px-4 py-2 rounded-lg ml-4">
+      Comment
+    </button>
+  </form>
+</div>

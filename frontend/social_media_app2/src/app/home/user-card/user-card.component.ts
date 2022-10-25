@@ -18,10 +18,7 @@ export class UserCardComponent implements OnInit {
 
   ngOnInit(): void {
     if (!this.currentUser) {
-      // this.auth.me().subscribe((res: any) => {
-      //   this.currentUser = res.data;
-      // });
-      // get user from local storage
+      //! get user from local storage
       this.currentUser = JSON.parse(localStorage.getItem("user") || "{}");
     }
   }
